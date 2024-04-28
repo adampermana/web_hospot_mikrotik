@@ -8,11 +8,264 @@
 <meta http-equiv="expires" content="-1" />
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"/>
 <link rel="stylesheet" href="css/mikhmon-ui-light.css">
+<!-- <link rel="stylesheet" href="img/background.png"> -->
 <link rel="stylesheet" href="css/background.css">
 <link rel="icon" href="img/favicon.png" />
+
+
+
+  <style>
+    /* Style untuk video sebagai background */
+
+    /* Style untuk konten di atas video */
+	body {
+		background-image: url('img/background.png'); /* Ubah path sesuai dengan lokasi background.png */
+		background-size: cover; /* Sesuaikan dengan ukuran halaman */
+		background-repeat: no-repeat;
+		background-attachment: fixed; /* Biarkan latar belakang tetap saat menggulir halaman */
+	  }
+    .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+        font-size: 24px;
+    }
+</style>
+  
+
+<style type="text/css">
+	body {
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+    }
+    /* Style untuk text datetime */
+    #clock {
+        background-color: #007bff;
+		box-shadow: 0 0 2px #f0f0f0;
+        width: 88%;
+        height: 114px;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 3px;
+        margin-bottom: 10px;
+        justify-content: center;
+        position: relative; /* Added position relative for absolute positioning */
+    }
+
+    #localCity {
+        font-size: 18px;
+        margin-right: 32%;
+        font-weight: bold;
+        color: #f0f0f0; /* Dark color for city name */
+    }
+
+    #time {
+        font-size: 38px;
+        font-weight: bold;
+        color: #f0f0f0; /* Light blue color for time */
+    }
+
+    #date {
+        font-size: 20px;
+        font-weight: bold;
+        color: #f0f0f0; /* Light blue color for date */
+    }
+
+    #ampm {
+        font-size: 16px;
+        position: absolute;
+        right: 90px;
+        top: 40px;
+        transform: translate(50%);
+        color: #f0f0f0; /* Dark color for AM/PM */
+    }
+
+    /* Media query untuk tablet */
+    @media (min-width: 712px) {
+        #ampm {
+            font-size: 20px;
+            right: 34%;
+            bottom: 20px;
+        }
+    }
+
+    @media (min-width: 280px) {
+        #ampm {
+            font-size: 20px;
+            right: 16%;
+            bottom: 20px;
+        }
+    }
+    @media (min-width: 375px) {
+        #ampm {
+            font-size: 20px;
+            right: 23%;
+            bottom: 20px;
+        }
+    }
+    @media (min-width: 390px) {
+        #ampm {
+            font-size: 20px;
+            right: 24%;
+            bottom: 20px;
+        }
+    }
+    @media (min-width: 430px) {
+        #ampm {
+            font-size: 20px;
+            right: 25%;
+            bottom: 20px;
+        }
+    }
+
+    /* Media query untuk desktop */
+    @media (min-width: 992px) {
+        #ampm {
+            font-size: 24px;
+            right: 15%;
+            bottom: 30px;
+        }
+    }
+
+
+    .info-container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-top: 50px;
+    }
+    .info-title {
+        font-size: 32px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .info-text {
+        font-size: 24px;
+        color: #555;
+        text-align: center;
+    }
+	.parent{
+	background: url('scan-icon.gif') no-repeat center; 
+	 position: absolute;
+	 display:block;
+	  top: 0;
+	  left: 0;
+	  }
+	.modal {
+	display: none; 
+	position: fixed; 
+	z-index: 1;
+	padding-top: 30px;
+	left: 0;
+	top: 0;
+	width: 100%; 
+	height: 100%; 
+	overflow: auto; 
+	background-color: rgb(0,0,0); 
+	background-color: rgba(0,0,0,0.4); 
+	}
+	.modal-content {
+	background-color: #000;
+	margin: auto;
+	padding: 10px;
+	border: 2px solid #111;
+	width: 260px;
+	-moz-border-radius:3px; 
+	-khtml-border-radius:5px; 
+	-webkit-border-radius:5px ; 
+	border-radius:5px ;
+	color:red;
+	font-weight:bold
+	}
+	.close {float: right;
+	font-size: 15px;
+	font-weight: bold;}
+	.close:hover,.close:focus {
+	text-decoration: none;
+	cursor: pointer;
+	}
+	#mainbody{
+	width:100%;
+	display:none;
+	}
+	.selector{
+		display:none;
+		visibility: hidden;
+	}
+	#result{
+	display:none;
+		visibility: hidden;
+	}
+	
+	#v{
+	width:240px;
+	height:200px;
+	}
+	#qr-canvas{
+	display:none;
+	}
+	#outdiv{
+	padding:0;
+	width:240px;
+	height:200px;
+	border: solid;
+	border-width: 3px 3px 3px 3px;
+	-moz-border-radius:3px; 
+	-khtml-border-radius:5px; 
+	-webkit-border-radius:5px ; 
+	border-radius:5px ;
+	color:#555;
+	background: #000;
+	}
+	.tsel{
+	padding:0;
+	}
+	blink {
+		-webkit-animation: 2s linear infinite condemned_blink_effect; 
+		animation: 2s linear infinite condemned_blink_effect;
+	}
+	@-webkit-keyframes condemned_blink_effect { 
+		0% {
+			visibility: hidden;
+		}
+		50% {
+			visibility: hidden;
+		}
+		100% {
+			visibility: visible;
+		}
+	}
+	@keyframes condemned_blink_effect {
+		0% {
+			visibility: hidden;
+		}
+		50% {
+			visibility: hidden;
+		}
+		100% {
+			visibility: visible;
+		}
+	}
+	</style>
+	<script type="text/javascript" src="llqrcode.js"></script>
+	<script type="text/javascript" src="webqr.js"></script>
+
+
 </head>
 
 <body class="background">
+	<!-- <video autoplay muted loop id="bg-video">
+        <source src="video/adp.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video> -->
 	<div class="container">
 		<div class="row">
 			<div class="col-8 mr-a" id="main" style="float:none;">
@@ -20,12 +273,30 @@
 					<div class="col-4">	
 						<div class="row">
 							<div class="col-12">
-								<div class="box bmh-80 bg-primary box-shadow text-center"><img src="img/logo.png" alt="ADPNET" style="border-radius: 5px; width:100%; max-width: 200px; height:auto;"/></div>
+								<div class="box bmh-80 bg-primary box-shadow text-center"><img src="img/logo.png" alt="ADPNET" style="border-radius: 5px; width:100%; max-width: 300px; height:auto;"/></div>
+							</div>
+						</div>
+				        <div class="row">
+							<div class="col-11">
+								<div class="row-md-6 mx-auto">
+									<!-- <div class="info-container">
+										<div class="info-text" id="localDateTime"></div>
+										<div class="info-text" id="localCity">Jakarta</div>
+									</div> -->
+									<div id="clock">
+										<div id="localCity" <p>Jakarta</p></div>
+										<div id="time"></div>
+										<div id="date"></div>
+										<div id="seconds"></div> <!-- Add id for seconds -->
+										<div id="ampm"></div> <!-- Add id for AM/PM -->
+									</div>
+									
+								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-12">
-								<div class="card  box-shadow">
+								<div class="card box-shadow">
 									<div class="card-header bg-primary"><h3>Silakan Login</h3></div>
 									<div class="card-body">
 								
@@ -65,8 +336,11 @@
 									<div class="box mr-2 pointer text-center text-light bg-blue" id="qr" onclick="window.location.href='https://adpnet.netlify.app';">QR Code</div>
 								</div> -->
 								<div class="col-4 col-md-4">
-									<div class="box mr-2 pointer text-center text-light bg-blue" id="qr" onclick="window.location='myqr/index.html';">QR Code</div>
+									<div class="box mr-2 pointer text-center text-light bg-blue"  id="myBtn" ;">QR Code</div>
 								</div>
+								<!-- <div class="col-4 col-md-4">
+									<div class="box mr-2 pointer text-center text-light bg-blue" id="qr" onclick="window.location='myqr/index.html';">QR Code</div>
+								</div> -->
 								
 							</div>
 								<input class="form-control-md mr-t-10 plch-center" name="username" placeholder="Voucher" />
@@ -250,5 +524,87 @@ function member(){
 
 //-->
 </script>
+
+<div id="myModal" class="modal">
+	<div class="modal-content">
+	<center><span class="scanning">▒▒▒<blink> ▓ scanning ▓ </blink>▒▒▒</span></center>
+	<div id="mainbody">
+	<div class="selector" id="webcamimg" onclick="setwebcam()" align="left" ></div>
+	<table class="tsel" border="0" width="100%">
+	<td valign="top" align="center" width="50%">
+	<table class="tsel" border="0">
+	<td colspan="1" align="center">
+	<div id="outdiv"></div>
+	</td>
+	</table>
+	</td>
+	<div id="result"></div>
+	</table>
+	<span class="close"></span>
+	<center><span style="font-weight:bold;font-size:12px; color:#999;">Scan QR code yang ada pada vouhcer anda</span></center>
+	</div>
+	<canvas id="qr-canvas" width="100%" height="100%"></canvas>
+	</div>
+	</div>
+	<script type="text/javascript">
+	var modal = document.getElementById('myModal');
+	var btn = document.getElementById("myBtn");
+	var span = document.getElementsByClassName("close")[0];
+	btn.onclick = function() {
+	modal.style.display = "block";
+	}
+	span.onclick = function() {
+	modal.style.display = "none";
+	}
+	window.onclick = function(event) {
+	if (event.target == modal) {
+	modal.style.display = "none";
+	}
+	}
+	</script>
+	<script type="text/javascript">load();</script>
+	<!-- <script>
+		document.addEventListener('DOMContentLoaded', function () {
+			// Ambil elemen untuk menampilkan date, time, dan city
+			const localDateTimeElement = document.getElementById('localDateTime');
+			const localCityElement = document.getElementById('localCity');
+		
+			// Mendapatkan waktu lokal
+			const currentDateTime = new Date();
+		
+			// Format date dan time
+			const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
+			const dateTimeString = currentDateTime.toLocaleDateString('en-US', options);
+		
+			// Menampilkan date dan time
+			localDateTimeElement.innerText = dateTimeString;
+		});
+		</script> -->
+		<script>
+			const timeElement = document.getElementById("time");
+			const dateElement = document.getElementById("date");
+//			const secondsElement = document.getElementById("seconds");
+			const ampmElement = document.getElementById("ampm");
+
+			
+			function updateTime() {
+				const now = new Date();
+				const hours = now.getHours().toString().padStart(2, "0");
+				const minutes = now.getMinutes().toString().padStart(2, "0");
+				const seconds = now.getSeconds().toString().padStart(2, "0");
+				const ampm = hours >= 12 ? "PM" : "AM";
+				
+			
+				timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+				dateElement.textContent = `${now.toDateString()}`;
+				//secondsElement.textContent = `:${seconds}`;
+				ampmElement.textContent = `${ampm}`;
+				
+			}
+			
+			setInterval(updateTime, 1000);
+			updateTime();
+		</script>
+		
 </body>
 </html>

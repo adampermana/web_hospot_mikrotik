@@ -1,5 +1,5 @@
 // QRCODE reader Copyright 2011 Lazar Laszlo
-// http://www.webqr.com
+https://adp.skom.id
 
 var gCtx = null;
 var gCanvas = null;
@@ -105,7 +105,7 @@ function read(a)
 {
     var html="<br>";
     if(a.indexOf("http://") === 0 || a.indexOf("https://") === 0)
-        html+="<a href='"+a+"'>"+a+"</a><br>";
+        html+="<a href='adp.skom.id"+a+"'>"+a+"</a><br>";
     html+="<b>"+htmlEntities(a)+"</b><br><br>";
     document.getElementById("result").innerHTML=html;
 	location.href = a;
@@ -145,7 +145,7 @@ function load()
 		document.getElementById("mainbody").style.display="inline";
 		document.getElementById("mainbody").innerHTML='<p id="mp1">QR code scanner for HTML5 capable browsers</p><br>'+
         '<br><p id="mp2">sorry your browser is not supported</p><br><br>'+
-        '<p id="mp1">try <a href="http://www.mozilla.com/firefox"><img src="firefox.png"/></a> or <a href="http://chrome.google.com"><img src="chrome_logo.gif"/></a> or <a href="http://www.opera.com"><img src="Opera-logo.png"/></a></p>';
+        '<p id="mp1">try <a href="https://www.mozilla.com/firefox"><img src="firefox.png"/></a> or <a href="https://chrome.google.com"><img src="chrome_logo.gif"/></a> or <a href="https://www.opera.com"><img src="Opera-logo.png"/></a></p>';
 	}
 }
 
