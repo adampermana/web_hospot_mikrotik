@@ -1,14 +1,16 @@
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <title id="title"></title>
-$(if refresh-timeout)
+</head>$(if refresh-timeout)
 <meta http-equiv="refresh" content="$(refresh-timeout-secs)">
 $(endif)
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"/>
 <link rel="stylesheet" href="css/mikhmon-ui-light.css">
 <link rel="stylesheet" href="css/background.css">
 <link rel="icon" href="img/favicon.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 <style>
 iframe  {float:left; height:22px; width:100%;}
 </style>
@@ -56,44 +58,58 @@ $(endif)
     <form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
     
       <table class="table table-bordered table-hover mr-b-10">
-        <tr>
-            <td align="right">IP</td>
-            <td>$(ip)</td>
-        </tr>
-        <tr>
-            <td align="right" style="width: 40%;">UL | DL</td>
-            <td>$(bytes-in-nice) | $(bytes-out-nice)</td>
-        </tr>
-        <tr>
-            <td align="right">Aktif</td>
-            <td>$(uptime)</td>
-        </tr>
-        $(if remain-bytes-total)
-        <tr>
-            <td align="right">Sisa Kuota</td>
-            <td>$(remain-bytes-total-nice)</td>
-        </tr>
-        $(endif)
-        $(if session-time-left)
-        <tr>
-            <td align="right">Sisa Waktu</td>
-            <td>$(session-time-left)</td>
-        </tr>
-        $(endif)
-        $(if blocked == 'yes')
-        <tr>
-            <td align="right">Status</td>
-            <td><div style="color: #FF8080"><a href="$(link-advert)" target="hotspot_advert">advertisement</a> required</div></td>
-        </tr>
-        $(elif refresh-timeout)
-        <tr>
-            <td align="right">Refresh</td>
-            <td>$(refresh-timeout)</td>
-        </tr>
-        <tr >
-            <td align="right">Expired</td>
-            <td style="padding-top:0px; padding-left:2px;"><iframe id="exp" frameborder="0" scrolling="no" src="about:blank"></iframe></td>
-        </tr>
+       <!-- IP -->
+<tr>
+    <td align="right"><i class="fas fa-network-wired"></i> IP</td>
+    <td>$(ip)</td>
+</tr>
+<tr>
+    <td align="right"><i class="fas fa-laptop"></i> MAC Address</td>
+    <td>$(mac)</td>
+</tr>
+
+<!-- UL | DL -->
+<tr>
+    <td align="right"><i class="fas fa-upload"></i> UL | DL</td>
+    <td>$(bytes-in-nice) | $(bytes-out-nice)</td>
+</tr>
+
+<!-- Aktif -->
+<tr>
+    <td align="right"><i class="fas fa-clock"></i> Aktif</td>
+    <td>$(uptime)</td>
+</tr>
+
+<!-- Sisa Kuota -->
+<tr>
+    <td align="right"><i class="fas fa-chart-pie"></i> Sisa Kuota</td>
+    <td>$(remain-bytes-total-nice)</td>
+</tr>
+
+<!-- Sisa Waktu -->
+<tr>
+    <td align="right"><i class="fas fa-hourglass-half"></i> Sisa Waktu</td>
+    <td>$(session-time-left)</td>
+</tr>
+
+<!-- Status -->
+<tr>
+    <td align="right"><i class="fas fa-info-circle"></i> Status</td>
+    <td><div style="color: #FF8080">advertisement required</div></td>
+</tr>
+
+<!-- Refresh -->
+<tr>
+    <td align="right"><i class="fas fa-sync-alt"></i> Refresh</td>
+    <td>$(refresh-timeout)</td>
+</tr>
+
+<!-- Expired -->
+<tr>
+    <td align="right"><i class="fas fa-calendar-times"></i> Expired</td>
+    <td style="padding-top:0px; padding-left:2px;"><iframe id="exp" frameborder="0" scrolling="no" src="about:blank"></iframe></td>
+</tr>
+
         $(endif)
         </table>
         $(if login-by-mac != 'yes')
